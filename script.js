@@ -184,18 +184,22 @@ document.addEventListener('DOMContentLoaded', () => {
         saveCart();
     };
 
-    const checkoutBtn = document.getElementById('checkout-btn');
+      const checkoutBtn = document.getElementById('checkout-btn');
     if (checkoutBtn) {
         checkoutBtn.addEventListener('click', () => {
             if (cart.length > 0) {
-                generateReceiptContent();
                 closeModal();
                 openModal('checkout');
+                
+                document.getElementById('checkout-address-step').style.display = 'block';
+                document.getElementById('checkout-receipt-step').style.display = 'none';
+                document.getElementById('delivery-name').value = ''; 
+                document.getElementById('delivery-address').value = ''; 
             }
         });
     }
 
-   const generateReceiptContent = () => {
+      const generateReceiptContent = (deliveryName, deliveryAddress) => {
         const container = document.getElementById('receipt-container');
         if (!container) return;
         let total = 0;
@@ -204,6 +208,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="logo">Fresh<span>Fuel</span></div>
                 <div>Order Summary</div>
                 <div>${new Date().toLocaleString()}</div>
+            </div>
+            <div class="receipt-delivery-info">
+                <strong>Deliver to:</strong>
+                <p><strong>${deliveryName}</strong></p>
+                <p>${deliveryAddress.replace(/\n/g, '<br>')}</p>
             </div>
         `;
         
@@ -224,7 +233,6 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
         });
         
-     
         receiptHTML += `
             <div class="receipt-total">
                 <span>TOTAL</span>
@@ -235,6 +243,41 @@ document.addEventListener('DOMContentLoaded', () => {
         container.innerHTML = receiptHTML;
         container.style.display = 'block';
     };
+
+        // New listener for the confirm address button
+  document.getElementById('confirm-address-btn').addEventListener('click', () => {
+    const nameInput = document.getElementById('delivery-name');
+    const addressInput = document.getElementById('delivery-address');
+    const nameError = document.getElementById('name-error');
+    const addressError = document.getElementById('address-error');
+
+    const deliveryName = nameInput.value.trim();
+    const deliveryAddress = addressInput.value.trim();
+
+    nameError.style.display = 'none';
+    addressError.style.display = 'none';
+
+    let isValid = true;
+
+    if (deliveryName === '') {
+        nameError.style.display = 'block';
+        isValid = false;
+    }
+
+    if (deliveryAddress === '') {
+        addressError.style.display = 'block';
+        isValid = false;
+    }
+
+    if (!isValid) {
+        return; 
+    }
+    
+    generateReceiptContent(deliveryName, deliveryAddress);
+
+    document.getElementById('checkout-address-step').style.display = 'none';
+    document.getElementById('checkout-receipt-step').style.display = 'block';
+});
     
    document.getElementById('download-receipt-btn').addEventListener('click', () => {
     const receiptNode = document.getElementById('receipt-container');

@@ -122,8 +122,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="meal-card fade-in" data-category="chicken" data-name="Chicken Adobo with Garlic Rice" data-price="175" data-image="https://mealpractice.b-cdn.net/36914598040965120/adobo-chicken-with-garlic-fried-rice-bps9sZtjLY.webp">
-                        <img src="https://mealpractice.b-cdn.net/36914598040965120/adobo-chicken-with-garlic-fried-rice-bps9sZtjLY.webp" alt="Chicken Adobo with Garlic Rice" class="meal-img">
+                    <div class="meal-card fade-in" data-category="chicken" data-name="Chicken Adobo with Garlic Rice" data-price="175" data-image="https://www.cookingclassy.com/wp-content/uploads/2019/08/chicken-adobo-9-500x375.jpg">
+                        <img src="https://www.cookingclassy.com/wp-content/uploads/2019/08/chicken-adobo-9-500x375.jpg" alt="Chicken Adobo with Garlic Rice" class="meal-img">
                         <div class="meal-info">
                             <h3 class="meal-title">Chicken Adobo with Garlic Rice</h3>
                             <p class="meal-description">A Filipino classic perfected for your convenience. Chicken pieces are slow-simmered in our signature soy-vinegar and peppercorn sauce until perfectly tender. Served with fragrant garlic-infused rice.</p>
@@ -174,8 +174,8 @@
                         </div>
                     </div>
 
-                    <div class="meal-card fade-in" data-category="seafood" data-name="Garlic Butter Shrimp Scampi" data-price="210" data-image="https://www.saltandlavender.com/wp-content/uploads/2021/02/garlic-butter-shrimp-recipe-4.jpg">
-                        <img src="https://www.saltandlavender.com/wp-content/uploads/2021/02/garlic-butter-shrimp-recipe-4.jpg" alt="Garlic Butter Shrimp Scampi" class="meal-img">
+                    <div class="meal-card fade-in" data-category="seafood" data-name="Garlic Butter Shrimp Scampi" data-price="210" data-image="https://images.themodernproper.com/production/posts/ShrimpScampi_7.jpg?w=1200&q=82&auto=format&fit=crop&dm=1718819494&s=eeefff4e854aabaa717259153b8b25db">
+                        <img src="https://images.themodernproper.com/production/posts/ShrimpScampi_7.jpg?w=1200&q=82&auto=format&fit=crop&dm=1718819494&s=eeefff4e854aabaa717259153b8b25db" alt="Garlic Butter Shrimp Scampi" class="meal-img">
                         <div class="meal-info">
                             <h3 class="meal-title">Garlic Butter Shrimp Scampi</h3>
                             <p class="meal-description">Plump, juicy shrimp sautéed in a rich garlic butter sauce with a splash of lemon and a sprinkle of fresh parsley. This vibrant and flavorful dish is served with whole wheat pasta to soak up every last drop.</p>
@@ -194,8 +194,8 @@
                             </div>
                         </div>
                     </div>
-                     <div class="meal-card fade-in" data-category="seafood" data-name="Sweet & Sour Fish Fillet" data-price="190" data-image="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?q=80&w=2669">
-                        <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?q=80&w=2669" alt="Sweet & Sour Fish Fillet" class="meal-img">
+                     <div class="meal-card fade-in" data-category="seafood" data-name="Sweet & Sour Fish Fillet" data-price="190" data-image="https://www.cooking-therapy.com/wp-content/uploads/2022/03/Sweet-and-Sour-Fish-3.jpg">
+                        <img src="https://www.cooking-therapy.com/wp-content/uploads/2022/03/Sweet-and-Sour-Fish-3.jpg" alt="Sweet & Sour Fish Fillet" class="meal-img">
                         <div class="meal-info">
                             <h3 class="meal-title">Sweet & Sour Fish Fillet</h3>
                             <p class="meal-description">Lightly battered cream dory fillets, fried until golden and crispy, then coated in a classic sweet and sour sauce. This beloved dish is balanced with colorful bell peppers, onions, and pineapple chunks.</p>
@@ -302,7 +302,8 @@
             <div class="modal-product-details">
                 <h2 id="modal-product-title"></h2>
                 <p id="modal-product-desc"></p>
-                <div class="modal-product-price"></div>
+                <div id="modal-product-price" class="modal-product-price"></div>
+                 <p class="price-disclaimer"><i>*This is a base price. Price may change with customization.</i></p>
                 <div class="form-group">
                     <label for="extra-instructions">Special Instructions (optional)</label>
                     <textarea id="extra-instructions" rows="3" placeholder="e.g., no onions, extra spicy..."></textarea>
@@ -328,7 +329,27 @@
     </div>
 
     <div class="modal" id="checkout-modal">
-        <button class="close-modal-btn">×</button>
+    <button class="close-modal-btn">×</button>
+    
+    <div id="checkout-address-step">
+        <h2>Delivery Details</h2>
+        <p>Please provide your complete delivery address.</p>
+
+        <div class="checkout-form-group">
+        <label for="delivery-name">Full Name</label>
+        <input type="text" id="delivery-name" placeholder="e.g., Juan Dela Cruz">
+        <small class="error-message" id="name-error" style="display: none; color: #D9725B;">Name cannot be empty.</small>
+    </div>
+
+        <div class="checkout-form-group">
+            <label for="delivery-address">Full Delivery Address</label>
+            <textarea id="delivery-address" rows="4" placeholder="e.g., House No., Street Name, Brgy, City, Postal Code..."></textarea>
+            <small class="error-message" id="address-error" style="display: none; color: #D9725B;">Address cannot be empty.</small>
+        </div>
+        <button id="confirm-address-btn" class="btn btn-primary">Generate Receipt</button>
+    </div>
+
+    <div id="checkout-receipt-step" style="display: none;">
         <h2>Order Placed!</h2>
         <p>Please follow these steps to complete your order:</p>
         <div class="checkout-steps">
@@ -344,6 +365,7 @@
         </div>
         <button id="download-receipt-btn" class="btn btn-primary">Download Receipt</button>
     </div>
+</div>
 
 </body>
 </html>

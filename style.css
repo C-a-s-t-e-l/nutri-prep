@@ -648,6 +648,15 @@ footer {
     flex-direction: column;
     gap: 20px;
 }
+
+.price-disclaimer {
+    font-size: 0.85rem;
+    color: var(--gray);
+    margin-top: -15px; 
+    margin-bottom: 20px;
+    text-align: left;
+}
+
 #modal-product-img {
     width: 100%;
     height: 250px;
@@ -801,6 +810,10 @@ footer {
     max-height: 90vh; 
 }
 
+#checkout-receipt-step{
+    overflow: auto;
+}
+
 .checkout-steps {
     background-color: var(--primary-light);
     padding: 20px;
@@ -817,6 +830,31 @@ footer {
     color: var(--primary);
     font-weight: bold;
 }
+
+.checkout-form-group {
+    margin-bottom: 20px;
+}
+.checkout-form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+.checkout-form-group textarea,
+.checkout-form-group input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid var(--light-gray);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    resize: vertical; 
+}
+.checkout-form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px var(--primary-light);
+}
+
 #download-receipt-btn {
     width: 100%;
     padding: 15px;
@@ -829,6 +867,23 @@ footer {
     
     overflow-y: auto;  
     flex-shrink: 1;   
+}
+
+.receipt-delivery-info {
+    padding-bottom: 15px; 
+    margin-bottom: 15px; 
+    border-bottom: 1px dotted var(--gray); 
+    text-align: left; 
+}
+
+.receipt-delivery-info strong {
+    font-size: 1.1rem; 
+}
+
+.receipt-delivery-info p {
+    margin-top: 5px; 
+    color: var(--gray);
+    line-height: 1.5;
 }
 
 .receipt-header {
