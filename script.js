@@ -244,7 +244,6 @@ document.addEventListener('DOMContentLoaded', () => {
         container.style.display = 'block';
     };
 
-        // New listener for the confirm address button
   document.getElementById('confirm-address-btn').addEventListener('click', () => {
     const nameInput = document.getElementById('delivery-name');
     const addressInput = document.getElementById('delivery-address');
@@ -279,47 +278,42 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('checkout-receipt-step').style.display = 'block';
 });
     
-   document.getElementById('download-receipt-btn').addEventListener('click', () => {
-    const receiptNode = document.getElementById('receipt-container');
-            if (receiptNode) {
-                
-                const originalMaxHeight = receiptNode.style.maxHeight;
-                const originalOverflowY = receiptNode.style.overflowY;
-                
-                receiptNode.style.maxHeight = 'none'; 
-                receiptNode.style.overflowY = 'visible'; 
+  document.getElementById('download-receipt-btn').addEventListener('click', async () => {
+        const receiptNode = document.getElementById('receipt-container');
+        if (!receiptNode) return;
 
-                html2canvas(receiptNode, {
-                    useCORS: true,
-                    backgroundColor: '#ffffff',
-                    scale: 2,
+        const printWidth = '580px'; 
+        
+        const originalStyle = receiptNode.style.cssText;
+
+        try {
             
-                    windowHeight: receiptNode.scrollHeight,
-                    windowWidth: receiptNode.scrollWidth
-                }).then(canvas => {
-                    
-                 
-                    receiptNode.style.maxHeight = originalMaxHeight;
-                    receiptNode.style.overflowY = originalOverflowY;
+            receiptNode.style.width = printWidth;
+            receiptNode.style.boxSizing = 'border-box'; 
 
-                 
-                    const link = document.createElement('a');
-                    link.download = `FreshFuel_Receipt_${Date.now()}.png`;
-                    link.href = canvas.toDataURL('image/png');
-                    link.click();
-                    
-                  
-                    cart = [];
-                    saveCart();
-                    setTimeout(closeModal, 500);
-                }).catch(error => {
-                   
-                    receiptNode.style.maxHeight = originalMaxHeight;
-                    receiptNode.style.overflowY = originalOverflowY;
-                    console.error('Oops, something went wrong with html2canvas!', error);
-                });
-            }
-        });
+            const canvas = await html2canvas(receiptNode, {
+                useCORS: true,
+                backgroundColor: '#ffffff',
+                scale: 2,
+            });
+
+            const link = document.createElement('a');
+            link.download = `NutriPrep_Receipt_${Date.now()}.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+            
+            cart = [];
+            saveCart();
+            setTimeout(closeModal, 500);
+
+        } catch (error) {
+            console.error('Oops, something went wrong with html2canvas!', error);
+            alert('Sorry, there was an error creating your receipt image.'); 
+        } finally {
+           
+            receiptNode.style.cssText = originalStyle;
+        }
+    });
 
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const closeMenuBtn = document.getElementById('closeMenuBtn');
