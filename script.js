@@ -364,4 +364,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     updateCartUI();
+
+     const modalInputs = document.querySelectorAll('.modal input[type="text"], .modal textarea');
+
+    const smoothScrollToInput = (e) => {
+        
+        setTimeout(() => {
+            e.target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center', 
+            });
+        }, 100);
+    };
+
+    modalInputs.forEach(input => {
+        input.addEventListener('focus', smoothScrollToInput);
+    });
 });
