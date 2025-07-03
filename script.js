@@ -220,7 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let total = 0;
         let receiptHTML = `
             <div class="receipt-header">
-                <div class="logo">Fresh<span>Fuel</span></div>
+                <div class="logo">Nutri<span>Prep</span></div>
                 <div>Order Summary</div>
                 <div>${new Date().toLocaleString()}</div>
             </div>
