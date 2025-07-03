@@ -788,11 +788,11 @@ footer {
     flex-direction: column;
 }
 
-#cart-items-container {
+/* #cart-items-container {
     overflow-y: auto;
     margin-bottom: 20px;
     flex-grow: 1;
-}
+} */
 
 .cart-item {
     display: flex;
@@ -892,9 +892,9 @@ footer {
     max-height: 90vh; 
 }
 
-#checkout-receipt-step{
+/* #checkout-receipt-step{
     overflow: auto;
-}
+} */
 
 .checkout-steps {
     background-color: var(--primary-light);
