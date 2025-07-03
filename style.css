@@ -552,6 +552,12 @@ section {
     color: var(--dark);
 }
 
+.soc-link{
+    color: blue;
+    font: bold;
+    text-decoration: underline;
+}
+
 .faq-icon {
     transition: transform 0.3s ease;
     flex-shrink: 0;
