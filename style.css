@@ -516,6 +516,70 @@ section {
     padding: 10px 25px;
 }
 
+/* --- FAQ Section Styles --- */
+.faq {
+    background-color: var(--primary-light);
+}
+
+.faq-accordion {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.faq-item {
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 20px 25px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.faq-icon {
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+    margin-left: 15px;
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+}
+
+.faq-answer p {
+    padding: 0 25px 20px;
+    line-height: 1.8;
+    color: var(--gray);
+}
+
+/* Style for when the FAQ item is active/open */
+.faq-item.active .faq-answer {
+    max-height: 300px; /* Adjust if answers are very long */
+    padding-bottom: 20px;
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(180deg);
+}
+
 
 footer {
     background-color: var(--dark);
